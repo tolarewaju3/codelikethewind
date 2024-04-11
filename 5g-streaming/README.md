@@ -2,11 +2,11 @@
 
 ## The Problem
 
-Telecommunication companies produce data extremely fast. 
+Telecommunication companies produce data **extremely fast.**
 
-To make use of this data, companies need to capture, transform, and analyze it in real time. They also need to store the data in an easy format for future use (AI model training etc).
+To make use of this data, companies need to **capture, transform, and analyze it in real time.** They also need to store the data in an easy format for future use (AI model training etc).
 
-But sometimes, this data comes in so fast that it can overwhelm a traditional database. So we require an intermediary buffer (Data Grid) for quick reads and writes.
+But sometimes, this data comes in so quickly that it can overwhelm a traditional database. So **we require an intermediary buffer** (Data Grid) for fast reads and writes.
 
 ## The Architecture
 
