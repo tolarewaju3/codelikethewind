@@ -1,0 +1,27 @@
+<distributed-cache name="call_records" statistics="true">
+    <encoding>
+        <key media-type="application/x-protostream"/>
+        <value media-type="application/x-protostream"/>
+    </encoding>
+    <indexing enabled="true" storage="filesystem" startup-mode="AUTO">
+        <indexed-entities>
+            <indexed-entity>org.codelikethewind.CallRecord</indexed-entity>
+        </indexed-entities>
+    </indexing>
+    <persistence passivation="false">
+        <table-jdbc-store xmlns="urn:infinispan:config:store:sql:14.0"
+                          segmented="false"
+                          dialect="MYSQL"
+                          table-name="call_record">
+            <schema message-name="CallRecord"
+                    package="org.codelikethewind"
+                    embedded-key="true"/>
+            <connection-pool
+                    connection-url="jdbc:mysql://sensordb:3306/sensor"
+                    driver="com.mysql.cj.jdbc.Driver"
+                    username="root"
+                    password="myP@ssword!"/>
+            <write-behind modification-queue-size="1024" fail-silently="false"/>
+        </table-jdbc-store>
+    </persistence>
+</distributed-cache>
