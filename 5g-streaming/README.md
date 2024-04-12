@@ -221,7 +221,7 @@ MB_DB_HOST: metabasedb
 
 ![Metabase Home](img/metabase_home.png)
 
-**Click “Let’s get started”** and fill in your information. Don’t worry, they won’t spam you. **Select “Self-service analytics for my own company”** when asked what you'll be using Metabase for.
+**Click “Let’s get started”** and fill in your information. Select “Self-service analytics for my own company” when asked what you'll be using Metabase for.
 
 **Select MySQL** for the database and fill in the details below.
 
@@ -232,7 +232,7 @@ Database Name: sensor
 Username: tolarewaju3
 Password: tolarewaju3
 ```
-**Click Connect Database.** Click Finish. Click “Take me to Metabase”.
+**Click Connect Database.** Click Finish and “Take me to Metabase”.
 
 First, **we’ll create a new dashboard for our sensor data.** In the top right corner, select "New Dashboard".
 
@@ -240,9 +240,7 @@ First, **we’ll create a new dashboard for our sensor data.** In the top right 
 
 **Name the dashboard** `Sensor Data`. Click Create. And click save in the upper right corner.
 
-**Next, we’ll display the total calls received** on our dashboard. In the upper right corner, click “+New → SQL Query”.
-
-Select our Sensor Data database and enter the query below.
+**Next, we’ll display the total calls received** on our dashboard. In the upper right corner, click “+New → SQL Query". Select our Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -252,9 +250,7 @@ FROM
 ```
 **Click the play button on the bottom right.** You should see the number of calls displayed.
 
-**Hit “Save” on the top right.** Name the question “Total Calls Received”. When prompted to add to a dashboard, select “Sensor Data”. 
-
-**Click Save** in the top right corner.
+**Hit “Save” on the top right.** Name the question “Total Calls Received”. When prompted to add to a dashboard, select “Sensor Data”. Click Save.
 
 ![Total Calls Received](img/total_calls_received.png)
 
@@ -271,9 +267,7 @@ FROM
 LIMIT
   100
 ```
-**Hit the play button.** You should see our call record data displayed in a table.
-
-**Hit “Save” on the top right.** Name the question “All Call Records”. Click Save. Add the query to the Sensor dashboard. Click Save on the top right.
+**Click the play button.** You should see our call record data displayed in a table. Hit “Save” and name the question “All Call Records”. Add the query to the Sensor dashboard. Click Save again.
 
 **Using the same steps above, display a graph of calls by location.** Use the query below.
 
@@ -291,9 +285,7 @@ ORDER BY
 LIMIT
   10
 ```
-**Click play on the bottom right.** Click the visualization button on the bottom left and select the bar chart.
-
-**Save the question.** Name it “Calls by Location” and add it to our dashboard. Hit Save.
+**Click play on the bottom right.** Hit the visualization button on the bottom left and select the bar chart. **Save the question.** Name it “Calls by Location” and add it to our dashboard. Hit Save.
 
 **Finally, we'll display a pie chart of the calls by network type.** Use the steps above and the query below.
 
