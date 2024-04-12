@@ -26,23 +26,21 @@ First, we’ll install the AMQ Streams Operator. On the left menu of the OpenShi
 
 After the operator finishes installing, we’ll create a new Kafka cluster. On the left menu, **select “Operators → Installed Operators” and click “AMQ Streams”.**
 
-[PIC]
-
-Under the “Provided APIs”, **create an instance of Kafka.** Name the cluster my-cluster and use the default settings. Click “Create”.
+Under the “Provided APIs”, **create an instance of Kafka.** Name the cluster `my-cluster` and use the default settings. Click “Create”.
 
 ![AMQ Streams Installation](img/streams_cluster.png)
 
-Finally, we’ll create a topic to stream our call events. In the horizontal menu, **select Kafka Topic.** Click “Create Kafka Topic” and name the topic `call-records.`
+Finally, we’ll create a topic to stream our call events. In the horizontal menu, **select Kafka Topic.** Click “Create Kafka Topic” and name the topic `call-records`.
 
 ## Deploy Data Grid & MySQL Storage
 
 We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.**
 
-Technically, our call events flow to data grid after we transform it using Flink (below), but the Flink setup actually requires Data Grid to be up.
+Technically, call events flow to data grid *after* we transform it using Flink (below), but the Flink setup requires Data Grid to be up.
 
-First, we’ll install the Data Grid Operator. On the left menu, **select Operators → OperatorHub and type “Data Grid”.** Click Install. The “Installed Namespace” should be openshift-operators. Click Install again.
+First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. **Click Install again.**
 
-After the operator finishes installing, we’ll create a new data grid cluster. On the left menu, **select Operators → Installed Operators** and click “Data Grid”.
+After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”.
 
 Under the provided APIs, **select Infinispan Cluster.**
 
@@ -79,7 +77,7 @@ On the left menu, **click “Administrator” and switch to the developer view.*
 
 Under the developer catalog, select Database.
 
-[PIC]
+![MySQL Installation](img/database.png)
 
 **Select mysql (Ephemeral)**, click “Instantiate Template”, and use the following properties.
 
@@ -92,11 +90,11 @@ MySQL Database Name: sensor
 ```
 **Click Create.** Wait for the pod to fully deploy. You should see a blue filled circle appear over the pod.
 
-Finally, we’ll create a table to store our call events. Under topology, **click on** the `sensordb` pod and **select Terminal.**
+Finally, **we’ll create a table to store our call events.** Under topology, click on the `sensordb` application, click the pod name, and select Terminal.
 
-[PIC]
+![Terminal](img/terminal.png)
 
-Login to our mysql server and enter the password (tolarewaju3).
+**Login to our mysql server** with the password (tolarewaju3).
 
 `mysql -u tolarewaju3 -p`
 
@@ -116,15 +114,15 @@ CREATE TABLE call_record (
 ```
 ## Deploy Apache Flink
 
-The data that comes in from cell devices is often unstructured, So we’ll use Apache Flink to transform the data and store it in data grid.
+The data that comes in from cell devices is often unstructured. So **we’ll use Apache Flink to transform the data and store it in data grid.**
 
-First, we’ll install the Flink Operator. 
+First, **install the Flink Operator.**
 
 **Switch back to the Administrator view.** On the left menu, **select Operators → OperatorHub** and type Flink. Click Install, use the `openshift-operator` namespace, and create the flink operator.
 
 ![Flink Installation](img/flink.png)
 
-After the operator finishes installing, we’ll create a new Flink deployment. On the left menu, **select Installed Operators and click Flink Kubernetes Operator.**
+After the operator finishes installing, **we’ll create a new Flink deployment.** On the left menu, select "Installed Operators" and click Flink Kubernetes Operator.
 
 Under the Provided APIs, **select Flink deployment.** **Switch the view to YAML** and paste in the configuration below.
 
@@ -149,7 +147,7 @@ spec:
       memory: 2048m
       cpu: 1
 ```
-We’ll also create a route so we can access the Flink deployment. On the right hand menu, **click Networking → Routes.**
+We’ll also **create a route** so we can access the Flink deployment. On the right hand menu, click Networking → Routes.
 
 **Click Create route.** Change to the YAML view, and replace everything in the editor with the configuration below.
 
@@ -170,9 +168,9 @@ spec:
   port:
     targetPort: rest
 ```
-Next, we’ll deploy a Flink job. This streaming job will transform our call record data into one that’s suitable for storage and viewing.
+**Next, we’ll deploy a Flink job.** This streaming job will transform our call record data into one that’s suitable for storage and viewing.
 
-Open the Flink deployment. Under Location, **navigate to the Flink deployment url.** *If you get an error, make sure your browser didn’t change the “http” to “https”*
+**Open the Flink deployment.** Under Location, navigate to the Flink deployment url. *If you get an error, make sure your browser didn’t change the “http” to “https”*
 
 [PIC]
 
