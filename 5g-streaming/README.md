@@ -267,7 +267,11 @@ FROM
 LIMIT
   100
 ```
-**Click the play button.** You should see our call record data displayed in a table. Hit “Save” and name the question “All Call Records”. Add the query to the Sensor dashboard. Click Save again.
+**Click the play button.** You should see our call record data displayed in a table. Hit “Save” and name the question “All Call Records”. Add the query to the Sensor dashboard. 
+
+Feel free to resize it make it things look pretty. **Click Save again.**
+
+![All Calls](img/all_calls.png)
 
 **Using the same steps above, display a graph of calls by location.** Use the query below.
 
@@ -287,6 +291,8 @@ LIMIT
 ```
 **Click play on the bottom right.** Hit the visualization button on the bottom left and select the bar chart. **Save the question.** Name it “Calls by Location” and add it to our dashboard. Hit Save.
 
+![Calls By Location](img/calls_by_location.png)
+
 **Finally, we'll display a pie chart of the calls by network type.** Use the steps above and the query below.
 
 ```
@@ -301,10 +307,8 @@ ORDER BY
   `call_record`.`network` ASC
 ```
 
-**Click the play button on the bottom.** Select Visualization and choose a pie chart. Save the question and name it “Calls by Network Type”.
+**Click the play button on the bottom.** Select Visualization and choose a pie chart. Save the question and name it “Calls by Network Type”. 
 
-Back at your dashboard, you can resize the elements to make it look pretty. Here’s my finished dashboard.
+When you're done, your dashboard should look like this.
 
 ![Flink Dashboard](img/dashboard.png)
-
-
