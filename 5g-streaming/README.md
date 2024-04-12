@@ -34,11 +34,11 @@ Finally, we’ll create a topic to stream our call events. In the horizontal men
 
 ## Deploy Data Grid & MySQL Storage
 
-We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.** Technically, call events flow to data grid after we transform it using Flink, but Flink requires Data Grid to be up.
+We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.**
 
 First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. **Click Install again.**
 
-After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”. Select Infinispan Cluster under the provided APIs.
+After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”. Select "Infinispan Cluster" under the provided APIs.
 
 ![Data Grid Installation](img/data_grid_install.png)
 
@@ -69,9 +69,7 @@ spec:
 
 After our call records get stored in cache, we’ll want to put them in a database for future access. So we’ll create a mysql database.
 
-On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project.
-
-Under the developer catalog, select Database.
+On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project. **Click "+Add"** and select Databases under the developer catalog.
 
 ![MySQL Installation](img/database.png)
 
@@ -112,13 +110,13 @@ CREATE TABLE call_record (
 
 The data that comes in from cell devices is often unstructured. So **we’ll use Apache Flink to transform the data and store it in data grid.**
 
-First, **install the Flink Operator.** Switch back to the Administrator view. On the left menu, select Operators → OperatorHub and type Flink. Click Install, use the `openshift-operator` namespace, and create the flink operator.
+First, **install the Flink Operator.** Switch back to the Administrator view. On the left menu, select Operators → OperatorHub and type `Flink`. Click Install, use the `openshift-operator` namespace, and create the flink operator.
 
 ![Flink Installation](img/flink.png)
 
 After the operator finishes installing, **we’ll create a new Flink deployment.** On the left menu, select "Installed Operators" and click Flink Kubernetes Operator.
 
-Under the Provided APIs, **select Flink deployment.** **Switch the view to YAML** and paste in the configuration below.
+Under the Provided APIs, **select Flink deployment.** Switch the view to YAML and replace everything with the configuration below.
 
 ```
 kind: FlinkDeployment
@@ -141,9 +139,7 @@ spec:
       memory: 2048m
       cpu: 1
 ```
-We’ll also **create a route** so we can access the Flink deployment. On the right hand menu, click Networking → Routes.
-
-**Click Create route.** Change to the YAML view, and replace everything in the editor with the configuration below.
+We’ll also **create a route** so we can access the Flink deployment. On the right hand menu, click Networking → Routes. **Click Create route.** Change to the YAML view, and replace everything in the editor with the configuration below.
 
 ```
 kind: Route
@@ -164,13 +160,13 @@ spec:
 ```
 **Next, we’ll deploy a Flink job.** This streaming job will transform our call record data into one that’s suitable for storage and viewing.
 
-**Open the Flink deployment.** Under Location, navigate to the Flink deployment url. *If you get an error, make sure your browser didn’t change the “http” to “https”*
+Under Location, **navigate to the Flink deployment url.** *If you get an error, make sure your browser didn’t change the “http” to “https”*
 
 ![Flink Dashboard](img/flink_dashboard.png)
 
 On the left menu, **select Submit New Job.** Click “+Add New” and upload [this jar](https://code-like-the-wind.s3.us-east-2.amazonaws.com/flink-streaming-1.0.jar). This may take a minute.
 
-When this finishes, click on the job and enter `com.demo.flink.streaming.StreamingJob` for the entry class field. **Hit “Submit”.**
+When this finishes, click on the job and enter `com.demo.flink.streaming.StreamingJob` for the entry class field. **Submit the job.**
 
 ## Generate Calls
 
@@ -189,9 +185,7 @@ Name: call-record-generator
 
 We’ll create a dashboard that shows interesting facts about our data. [Metabase](https://www.metabase.com/) is a great library that makes it easy for us to visualize data.
 
-First, **we’ll create a database** for metabase dashboard. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected.
-
-**Click the "+Add" button** under the Developer Catalog. Select Databases.
+First, **we’ll create a database** for metabase dashboard. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected. **Click the "+Add" button** under the Developer Catalog. Select Databases.
 
 **Select MySql (Ephemeral)**, click Instantiate Template and use the properties below.
 
@@ -227,9 +221,7 @@ MB_DB_HOST: metabasedb
 
 ![Metabase Home](img/metabase_home.png)
 
-**Click “Let’s get started”** and fill in your information. Don’t worry, they won’t spam you.
-
-**Select “Self-service analytics for my own company”** when asked what you'll be using Metabase for.
+**Click “Let’s get started”** and fill in your information. Don’t worry, they won’t spam you. **Select “Self-service analytics for my own company”** when asked what you'll be using Metabase for.
 
 **Select MySQL** for the database and fill in the details below.
 
