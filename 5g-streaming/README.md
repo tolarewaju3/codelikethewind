@@ -18,7 +18,7 @@ Our architecture will generate data from cell devices, transform it, and store i
 
 We’ll use AMQ Streams to handle events being generated from our cell devices.
 
-First, we’ll install the AMQ Streams Operator. On the left menu of the OpenShift console, **select Operators → OperatorHub** and **type “AMQ Streams”.**
+**First, we’ll install the AMQ Streams Operator.** On the left menu of the OpenShift console, select Operators → OperatorHub and type “AMQ Streams”.
 
 **Click Install.** Make sure the “Installed Namespace” is openshift-operators. Click Install again.
 
@@ -34,15 +34,11 @@ Finally, we’ll create a topic to stream our call events. In the horizontal men
 
 ## Deploy Data Grid & MySQL Storage
 
-We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.**
-
-Technically, call events flow to data grid *after* we transform it using Flink, but Flink requires Data Grid to be up.
+We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.** Technically, call events flow to data grid after we transform it using Flink, but Flink requires Data Grid to be up.
 
 First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. **Click Install again.**
 
-After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”.
-
-Under the provided APIs, **select Infinispan Cluster.**
+After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”. Select Infinispan Cluster under the provided APIs.
 
 ![Data Grid Installation](img/data_grid_install.png)
 
@@ -116,9 +112,7 @@ CREATE TABLE call_record (
 
 The data that comes in from cell devices is often unstructured. So **we’ll use Apache Flink to transform the data and store it in data grid.**
 
-First, **install the Flink Operator.**
-
-**Switch back to the Administrator view.** On the left menu, **select Operators → OperatorHub** and type Flink. Click Install, use the `openshift-operator` namespace, and create the flink operator.
+First, **install the Flink Operator.** Switch back to the Administrator view. On the left menu, select Operators → OperatorHub and type Flink. Click Install, use the `openshift-operator` namespace, and create the flink operator.
 
 ![Flink Installation](img/flink.png)
 
@@ -327,8 +321,6 @@ ORDER BY
 
 Back at your dashboard, you can resize the elements to make it look pretty. Here’s my finished dashboard.
 
-![Flink Installation](img/dashboard.png)
-
-We’ve successfully created a Streaming dashboard for our call record data!
+![Flink Dashboard](img/dashboard.png)
 
 
