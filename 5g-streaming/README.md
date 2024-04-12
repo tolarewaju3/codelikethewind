@@ -172,17 +172,19 @@ spec:
 
 **Open the Flink deployment.** Under Location, navigate to the Flink deployment url. *If you get an error, make sure your browser didn’t change the “http” to “https”*
 
-[PIC]
+![Flink Dashboard](img/flink_dashboard.png)
 
-On the left menu, **select Submit New Job.** Click “+Add New” and upload this jar [LINK]. This may take a minute.
+On the left menu, **select Submit New Job.** Click “+Add New” and upload [this jar](https://code-like-the-wind.s3.us-east-2.amazonaws.com/flink-streaming-1.0.jar). This may take a minute.
 
 When this finishes, click on the job and enter `com.demo.flink.streaming.StreamingJob` for the entry class field. **Hit “Submit”.**
 
 ## Generate Calls
 
-Now, we’ll generate some call record data.
+Now, **we’ll generate some call record data.** Go back to the OpenShift console and switch to the Developer view.
 
-**Switch back to the Developer view.** Click “+Add” and select “Container Images” under the Developer Catalog. Fill in the properties below.
+![Flink Dashboard](img/developer.png)
+
+**Click “+Add”** and select “Container Images” under the Developer Catalog. Fill in the properties below.
 
 ```
 Image name from external registry: tolarewaju3/call-record-generator-amd64
@@ -191,11 +193,9 @@ Name: call-record-generator
 ```
 ## Create Dashboard
 
-The best part of capturing any data is viewing it. We’ll create a dashboard that shows interesting facts about our data. Metabase is a great library that makes it easy for us to visualize data.
+We’ll create a dashboard that shows interesting facts about our data. [Metabase](https://www.metabase.com/) is a great library that makes it easy for us to visualize data.
 
-First, we’ll create a mysql database to support our metabase dashboard.
-
-On the left menu, **click “Administrator” and switch to the developer view.** Make sure the `openshift-operator` project is selected.
+First, **we’ll create a database** for metabase dashboard. On the left menu, click “Administrator” and switch to the developer view. Make sure the `openshift-operator` project is selected.
 
 **Click +Add and select Database** under the Developer Catalog.
 
