@@ -36,7 +36,7 @@ Finally, we’ll create a topic to stream our call events. In the horizontal men
 
 We’ll use data grid to cache our call events for quick access. **Data Grid is a distributed, in-memory cache that accelerates data processing.**
 
-Technically, call events flow to data grid *after* we transform it using Flink (below), but the Flink setup requires Data Grid to be up.
+Technically, call events flow to data grid *after* we transform it using Flink, but Flink requires Data Grid to be up.
 
 First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. **Click Install again.**
 
@@ -195,9 +195,9 @@ Name: call-record-generator
 
 We’ll create a dashboard that shows interesting facts about our data. [Metabase](https://www.metabase.com/) is a great library that makes it easy for us to visualize data.
 
-First, **we’ll create a database** for metabase dashboard. On the left menu, click “Administrator” and switch to the developer view. Make sure the `openshift-operator` project is selected.
+First, **we’ll create a database** for metabase dashboard. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected.
 
-**Click +Add and select Database** under the Developer Catalog.
+**Click the "+Add" button** under the Developer Catalog. Select Databases.
 
 **Select MySql (Ephemeral)**, click Instantiate Template and use the properties below.
 
@@ -224,15 +224,20 @@ MB_DB_USER: tolarewaju3
 MB_DB_PASS: tolarewaju3
 MB_DB_HOST: metabasedb
 ```
-After the deployment finishes (you’ll see a dark blue ring around the pod), go to the metabase url by clicking on the arrow.
 
-[PIC]
+**Wait until the deployment finishes.** You’ll see a dark blue ring around the pod.
 
-Click “Let’s get started” and fill in your information. Don’t worry, they won’t spam you.
+![Metabase Deployment](img/metabase_deployment.png)
 
-You’ll see a screen asking what you’ll use metabase for. Select “Self-service analytics for my own company”.
+**Open the Matabase dashboard**. Click the link in the top right of the pod.
 
-When you reach the “Add data” screen, select MySQL and fill in the details below.
+![Metabase Home](img/metabase_home.png)
+
+**Click “Let’s get started”** and fill in your information. Don’t worry, they won’t spam you.
+
+**Select “Self-service analytics for my own company”** when asked what you'll be using Metabase for.
+
+**Select MySQL** for the database and fill in the details below.
 
 ```
 Display Name: Sensor Data
@@ -241,15 +246,15 @@ Database Name: sensor
 Username: tolarewaju3
 Password: tolarewaju3
 ```
-**Click continue.** Click Finish. Click “Take me to Metabase”.
+**Click Connect Database.** Click Finish. Click “Take me to Metabase”.
 
-First, we’ll create a new dashboard for our sensor data. In the top right corner, **click “+New → Dashboard”.**
+First, **we’ll create a new dashboard for our sensor data.** In the top right corner, select "New Dashboard".
+
+![Metabase Home](img/new_dashboard.png)
 
 **Name the dashboard** `Sensor Data`. Click Create. And click save in the upper right corner.
 
-[PIC]
-
-We’ll add three SQL queries to our dashboard. In the upper right corner, **click “+New → SQL Query”.** 
+**Next, we’ll display the total calls received** on our dashboard. In the upper right corner, click “+New → SQL Query”.
 
 Select our Sensor Data database and enter the query below.
 
@@ -261,11 +266,13 @@ FROM
 ```
 **Click the play button on the bottom right.** You should see the number of calls displayed.
 
-At the top right, **click “Save” and name the question “Total Calls Received”.** When prompted to add to a dashboard, select “Sensor Data”. 
+**Hit “Save” on the top right.** Name the question “Total Calls Received”. When prompted to add to a dashboard, select “Sensor Data”. 
 
 **Click Save** in the top right corner.
 
-We’ll create our next item on our dashboard. In the upper right corner, **click “+New → SQL Query”.** Select our Sensor Data database and enter the query below.
+![Total Calls Received](img/total_calls_received.png)
+
+**Next, we'll display a table of all calls** on our dashboard. In the upper right corner, **click “+New → SQL Query”.** Select our Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -280,9 +287,9 @@ LIMIT
 ```
 **Hit the play button.** You should see our call record data displayed in a table.
 
-At the top right, click “Save” and name the question “All Call Records”. Click Save. Add the query to the dashboard we created. Click Save.
+**Hit “Save” on the top right.** Name the question “All Call Records”. Click Save. Add the query to the Sensor dashboard. Click Save on the top right.
 
-Follow the same steps above to add our third dashboard element. Use the query below.
+**Using the same steps above, display a graph of calls by location.** Use the query below.
 
 ```
 SELECT
@@ -300,9 +307,9 @@ LIMIT
 ```
 **Click play on the bottom right.** Click the visualization button on the bottom left and select the bar chart.
 
-Save the question and name it “Calls by Location”. Add it to our dashboard. Hit Save.
+**Save the question.** Name it “Calls by Location” and add it to our dashboard. Hit Save.
 
-Ok, last one! Add a new SQL query just as before.
+**Finally, we'll display a pie chart of the calls by network type.** Use the steps above and the query below.
 
 ```
 SELECT
