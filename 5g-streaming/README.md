@@ -103,7 +103,7 @@ CREATE TABLE call_record (
 ```
 ## Deploy Apache Flink
 
-The data that comes in from cell devices is often unstructured. So **we’ll use Apache Flink to transform the data and store it in data grid.**
+Cell data is often unstructured, so we’ll use Apache Flink to **transform it and store it in data grid.**
 
 First, **install the Flink Operator.** Switch back to the Administrator view. On the left menu, select Operators → OperatorHub and type `Flink`. Click Install, use the `openshift-operator` namespace, and create the flink operator.
 
