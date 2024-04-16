@@ -18,27 +18,27 @@ Our architecture will generate data from cell devices, transform it, and store i
 
 We’ll use AMQ Streams to handle events being generated from our cell devices.
 
-**First, we’ll install the AMQ Streams Operator.** On the left menu of the OpenShift console, select `Operators → OperatorHub` and type “AMQ Streams”. Click Install. Make sure the “Installed Namespace” is `openshift-operators.` Click Install again.
+**First, we’ll install the AMQ Streams Operator.** On the left menu of the OpenShift console, select `Operators → OperatorHub` and type `AMQ Streams`. Click Install. Make sure the Installed Namespace is `openshift-operators`. Click Install again.
 
 ![AMQ Streams Installation](img/streams_install_overview.png)
 
-After the operator finishes installing, we’ll **create a new Kafka cluster.** On the left menu, select “Operators → Installed Operators” and click “AMQ Streams”. Under the “Provided APIs”, create an instance of Kafka. Name the cluster `my-cluster` and use the default settings. Click “Create”.
+After the operator finishes installing, we’ll **create a new Kafka cluster.** On the left menu, select `Operators → Installed Operators` and click “AMQ Streams”. Under “Provided APIs”, create an instance of Kafka. Name the cluster `my-cluster` and use the default settings. Click `Create`.
 
 ![AMQ Streams Installation](img/streams_cluster.png)
 
-Finally, we’ll create a topic to stream our call events. In the horizontal menu, select Kafka Topic. Click “Create Kafka Topic” and name the topic `call-records`.
+Finally, we’ll create a topic to stream our call events. In the horizontal menu, select Kafka Topic. Click `Create Kafka Topic` and name the topic `call-records`.
 
 ## Deploy Data Grid & MySQL Storage
 
-We’ll use data grid to cache our call events for quick access. Data Grid is a **distributed, in-memory cache that accelerates data processing.**
+We’ll use data grid to cache our call events for quick access. Data Grid is a distributed, in-memory cache that accelerates data processing.
 
-First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. Click Install again.
+First, **we’ll install the Data Grid Operator.** On the left menu, select `Operators → OperatorHub` and type `Data Grid`. Click Install. The Installed Namespace should be `openshift-operators`. Click Install again.
 
-After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”. Select "Infinispan Cluster" under the provided APIs.
+After the operator finishes installing, **create a new data grid cluster.** On the left menu, select `Operators → Installed Operators` and click “Data Grid”. Select "Infinispan Cluster" under the provided APIs.
 
 ![Data Grid Installation](img/data_grid_install.png)
 
-Switch to the YAML view. Replace everything in the editor with the configuration below.
+**Switch to the YAML view.** Replace everything in the editor with the configuration below.
 
 ```
 apiVersion: infinispan.org/v1
@@ -68,7 +68,7 @@ On the left menu, **click “Administrator” and switch to the developer view.*
 
 ![MySQL Installation](img/database.png)
 
-Select mysql (Ephemeral), click “Instantiate Template”, and use the following properties.
+Select mysql (Ephemeral), click `Instantiate Template`, and use the properties below.
 
 ```
 Database Service Name: sensordb
@@ -182,7 +182,7 @@ We’ll create a dashboard that shows interesting facts about our data. [Metabas
 
 ### Deploy Metabase Analytics
 
-First, we’ll create a database for the metabase container. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected. Click the `+Add` button under the Developer Catalog. Select `Databases.`
+First, we’ll create a database for the metabase container. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected. Click the `+Add` button under the Developer Catalog. Select `Databases`.
 
 Select MySql (Ephemeral), click Instantiate Template and use the properties below.
 
