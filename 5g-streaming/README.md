@@ -62,13 +62,13 @@ spec:
       - maven: 'com.mysql:mysql-connector-j:8.3.0'
   replicas: 1
 ```
-**This creates a single-replica data grid cluster.** It also downloads a connector that we’ll use to save our cache data to mysql.
+This creates a single-replica data grid cluster. It also downloads a connector that we’ll use to save our cache data to mysql.
 
 ### Deploy MySQL
 
-After our call records get stored in cache, we’ll want to put them in a database for future access. So we’ll create a mysql database.
+After our call records get stored in cache, we’ll put them in a MySQL database for future access.
 
-On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project. Click "+Add" and select Databases under the developer catalog.
+On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project. Click `+Add` and select `Databases` under the developer catalog.
 
 ![MySQL Installation](img/database.png)
 
@@ -81,9 +81,9 @@ MySQL Connection Password: tolarewaju3
 MySQL Connection root user password: myP@ssword!
 MySQL Database Name: sensor
 ```
-**Click Create.** Wait for the pod to fully deploy. You should see a blue filled circle appear over the pod.
+Click Create. **Wait for the pod to fully deploy.** You should see a blue filled circle appear over the pod.
 
-Finally, we’ll create a table to store our call events. Under topology, click on the `sensordb` application, click the pod name, and select Terminal.
+Finally, we’ll create a table to store our call events. Under topology, click on the `sensordb` application, click the pod name, and select `Terminal.`
 
 ![Terminal](img/terminal.png)
 
@@ -157,13 +157,13 @@ spec:
   port:
     targetPort: rest
 ```
-**Next, we’ll deploy a Flink job.** This streaming job will transform our call record data into one that’s suitable for storage and viewing.
+**Next, we’ll deploy a Flink job** that transforms our call record data into a form that’s suitable for storage and viewing.
 
 Under Location, navigate to the Flink deployment url. *If you get an error, make sure your browser didn’t change the “http” to “https”*
 
 ![Flink Dashboard](img/flink_dashboard.png)
 
-On the left menu, select Submit New Job. Click “+Add New” and upload [this jar](https://code-like-the-wind.s3.us-east-2.amazonaws.com/flink-streaming-1.0.jar). This may take a minute.
+On the left menu, select `Submit New Job.` Click `+Add New` and upload [this jar](https://code-like-the-wind.s3.us-east-2.amazonaws.com/flink-streaming-1.0.jar). This may take a minute.
 
 When this finishes, click on the job and enter `com.demo.flink.streaming.StreamingJob` for the entry class field. **Submit the job.**
 
@@ -173,7 +173,7 @@ Now, **we’ll generate some call record data.** Go back to the OpenShift consol
 
 ![Flink Dashboard](img/developer.png)
 
-Click “+Add” and select “Container Images” under the Developer Catalog. Fill in the properties below.
+Click `+Add` and select `Container Images` under the Developer Catalog. Fill in the properties below.
 
 ```
 Image name from external registry: tolarewaju3/call-record-generator-amd64
@@ -186,7 +186,7 @@ We’ll create a dashboard that shows interesting facts about our data. [Metabas
 
 ### Deploy Metabase Analytics
 
-First, we’ll create a database for the metabase container. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected. Click the "+Add" button under the Developer Catalog. Select Databases.
+First, we’ll create a database for the metabase container. On the left menu, switch to the developer view. Make sure the `openshift-operator` project is selected. Click the `+Add` button under the Developer Catalog. Select `Databases.`
 
 Select MySql (Ephemeral), click Instantiate Template and use the properties below.
 
@@ -222,7 +222,7 @@ Open the Matabase dashboard. Click the link in the top right of the pod.
 
 ![Metabase Home](img/metabase_home.png)
 
-Click “Let’s get started” and fill in your information. Select “Self-service analytics for my own company” when asked what you'll be using Metabase for.
+Click `Let’s get started` and fill in your information. Select `Self-service analytics for my own company` when asked what you'll be using Metabase for.
 
 Select MySQL for the database and fill in the details below.
 
