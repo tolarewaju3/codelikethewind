@@ -24,26 +24,25 @@ We’ll use AMQ Streams to handle events being generated from our cell devices.
 
 ![AMQ Streams Installation](img/streams_install_overview.png)
 
-After the operator finishes installing, we’ll create a new Kafka cluster. On the left menu, **select “Operators → Installed Operators” and click “AMQ Streams”.**
+After the operator finishes installing, we’ll create a new Kafka cluster. On the left menu, select “Operators → Installed Operators” and click “AMQ Streams”.
 
 Under the “Provided APIs”, **create an instance of Kafka.** Name the cluster `my-cluster` and use the default settings. Click “Create”.
 
 ![AMQ Streams Installation](img/streams_cluster.png)
 
-Finally, we’ll create a topic to stream our call events. In the horizontal menu, **select Kafka Topic.** Click “Create Kafka Topic” and name the topic `call-records`.
+Finally, we’ll create a topic to stream our call events. In the horizontal menu, select Kafka Topic. Click “Create Kafka Topic” and name the topic `call-records`.
 
 ## Deploy Data Grid & MySQL Storage
 
 We’ll use data grid to cache our call events for quick access. Data Grid is a **distributed, in-memory cache that accelerates data processing.**
 
-First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. **Click Install again.**
+First, **we’ll install the Data Grid Operator.** On the left menu, select Operators → OperatorHub and type “Data Grid”. Click Install. The “Installed Namespace” should be `openshift-operators`. Click Install again.
 
 After the operator finishes installing, **create a new data grid cluster.** On the left menu, select Operators → Installed Operators and click “Data Grid”. Select "Infinispan Cluster" under the provided APIs.
 
 ![Data Grid Installation](img/data_grid_install.png)
 
-**Switch to the YAML view.**
-Replace everything in the editor with the configuration below.
+Switch to the YAML view. Replace everything in the editor with the configuration below.
 
 ```
 apiVersion: infinispan.org/v1
@@ -69,7 +68,7 @@ spec:
 
 After our call records get stored in cache, we’ll want to put them in a database for future access. So we’ll create a mysql database.
 
-On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project. **Click "+Add"** and select Databases under the developer catalog.
+On the left menu, **click “Administrator” and switch to the developer view.** Select the `openshift-operators` project. Click "+Add" and select Databases under the developer catalog.
 
 ![MySQL Installation](img/database.png)
 
@@ -114,9 +113,9 @@ First, **install the Flink Operator.** Switch back to the Administrator view. On
 
 ![Flink Installation](img/flink.png)
 
-After the operator finishes installing, **we’ll create a new Flink deployment.** On the left menu, select "Installed Operators" and click Flink Kubernetes Operator.
+After the operator finishes installing, **we’ll create a new Flink deployment.** On the left menu, select `Installed Operators` and click `Flink Kubernetes Operator.` Under the Provided APIs, select `Flink deployment.` 
 
-Under the Provided APIs, select Flink deployment. Switch the view to YAML and replace everything with the configuration below.
+Switch the view to YAML and replace everything with the configuration below.
 
 ```
 kind: FlinkDeployment
@@ -139,7 +138,7 @@ spec:
       memory: 2048m
       cpu: 1
 ```
-We’ll also create a route so we can access the Flink deployment. On the right hand menu, click Networking → Routes. **Click Create route.** Change to the YAML view, and replace everything in the editor with the configuration below.
+We’ll also **create a route** so we can access the Flink deployment. On the right hand menu, click Networking → Routes. Click `Create route`, change to the YAML view, and replace everything in the editor with the configuration below.
 
 ```
 kind: Route
@@ -219,13 +218,13 @@ MB_DB_HOST: metabasedb
 
 ![Metabase Deployment](img/metabase_deployment.png)
 
-**Open the Matabase dashboard**. Click the link in the top right of the pod.
+Open the Matabase dashboard. Click the link in the top right of the pod.
 
 ![Metabase Home](img/metabase_home.png)
 
-**Click “Let’s get started”** and fill in your information. Select “Self-service analytics for my own company” when asked what you'll be using Metabase for.
+Click “Let’s get started” and fill in your information. Select “Self-service analytics for my own company” when asked what you'll be using Metabase for.
 
-**Select MySQL** for the database and fill in the details below.
+Select MySQL for the database and fill in the details below.
 
 ```
 Display Name: Sensor Data
@@ -234,7 +233,7 @@ Database Name: sensor
 Username: tolarewaju3
 Password: tolarewaju3
 ```
-**Click Connect Database.** Click Finish and “Take me to Metabase”.
+Click Connect Database. Click Finish and “Take me to Metabase”.
 
 ### Create Call Record Dashboard
 
@@ -244,7 +243,7 @@ First, **we’ll create a new dashboard for our sensor data.** In the top right 
 
 Name the dashboard `Sensor Data`. Click Create. And click save in the upper right corner.
 
-Next, we’ll display the total calls received on our dashboard. In the upper right corner, click “+New → SQL Query". Select our Sensor Data database and enter the query below.
+Next, **we’ll display the total calls received** on our dashboard. In the upper right corner, click “+New → SQL Query". Select our Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -258,7 +257,7 @@ Hit “Save” on the top right. Name the question “Total Calls Received”. W
 
 ![Total Calls Received](img/total_calls_received.png)
 
-Next, we'll display a table of all calls on our dashboard. In the upper right corner, click “+New → SQL Query”. Select our Sensor Data database and enter the query below.
+Next, **we'll display a table of all calls** on our dashboard. In the upper right corner, click “+New → SQL Query”. Select our Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -271,7 +270,7 @@ FROM
 LIMIT
   100
 ```
-**Click the play button.** You should see our call record data displayed in a table. Hit “Save” and name the question “All Call Records”. Add the query to the Sensor dashboard. 
+Click the play button. You should see our call record data displayed in a table. Hit “Save” and name the question “All Call Records”. Add the query to the Sensor dashboard. 
 
 Feel free to resize it make it things look pretty. **Click Save again.**
 
