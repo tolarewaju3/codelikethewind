@@ -18,13 +18,11 @@ Our architecture will generate data from cell devices, transform it, and store i
 
 We’ll use AMQ Streams to handle events being generated from our cell devices.
 
-**First, we’ll install the AMQ Streams Operator.** On the left menu of the OpenShift console, select Operators → OperatorHub and type “AMQ Streams”. Click Install. Make sure the “Installed Namespace” is `openshift-operators.` Click Install again.
+**First, we’ll install the AMQ Streams Operator.** On the left menu of the OpenShift console, select `Operators → OperatorHub` and type “AMQ Streams”. Click Install. Make sure the “Installed Namespace” is `openshift-operators.` Click Install again.
 
 ![AMQ Streams Installation](img/streams_install_overview.png)
 
-After the operator finishes installing, we’ll create a new Kafka cluster. On the left menu, select “Operators → Installed Operators” and click “AMQ Streams”.
-
-Under the “Provided APIs”, **create an instance of Kafka.** Name the cluster `my-cluster` and use the default settings. Click “Create”.
+After the operator finishes installing, we’ll **create a new Kafka cluster.** On the left menu, select “Operators → Installed Operators” and click “AMQ Streams”. Under the “Provided APIs”, create an instance of Kafka. Name the cluster `my-cluster` and use the default settings. Click “Create”.
 
 ![AMQ Streams Installation](img/streams_cluster.png)
 
