@@ -155,7 +155,7 @@ spec:
   port:
     targetPort: rest
 ```
-**Next, we’ll deploy a Flink job** that transforms our call record data into a form that’s suitable for storage and viewing. Under Location, navigate to the Flink deployment url. *If you get an error, make sure your browser didn’t change the “http” to “https”*
+**Next, we’ll deploy a Flink job** that transforms our call record data into a form that’s suitable for storage and viewing. Under Location, navigate to the Flink deployment url. If you get an error, make sure your browser didn’t change the “http” to “https”
 
 ![Flink Dashboard](img/flink_dashboard.png)
 
@@ -235,7 +235,7 @@ First, **we’ll create a new dashboard for our sensor data.** In the top right 
 
 Name the dashboard `Sensor Data`. Click Create. And click save in the upper right corner.
 
-Next, **we’ll display the total calls received** on our dashboard. In the upper right corner, click `+New → SQL Query`. Select our Sensor Data database and enter the query below.
+Next, **we’ll display the total calls received** on our dashboard. In the upper right corner, click `+ New → SQL Query`. Select our Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -243,7 +243,7 @@ SELECT
 FROM
   `call_record`
 ```
-Click the play button on the bottom right. You should see the number of calls displayed.Hit `Save`. Name the question `Total Calls Received`. When prompted to add to a dashboard, select `Sensor Data`. Click `Save`.
+Click the play button on the bottom right. You should see the number of calls displayed. Hit `Save`. Name the question `Total Calls Received`. When prompted to add to a dashboard, select `Sensor Data`. Click `Save`.
 
 ![Total Calls Received](img/total_calls_received.png)
 
@@ -264,7 +264,7 @@ Click the play button. You should see our call record data displayed in a table.
 
 ![All Calls](img/all_calls.png)
 
-With the same steps above, display a graph of calls by location. Use the query below.
+**Next, add a graph of calls by location**. Click `+New → SQL Query`. Select the Sensor Data database and enter the query below.
 
 ```
 SELECT
@@ -284,7 +284,7 @@ Click play on the bottom right. Hit the visualization button on the bottom left 
 
 ![Calls By Location](img/calls_by_location.png)
 
-Finally, we'll display a pie chart of the calls by network type. Use the steps above and the query below.
+Finally, **we'll display a pie chart of calls by network type.** Use the steps above and the query below.
 
 ```
 SELECT
