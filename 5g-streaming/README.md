@@ -10,13 +10,18 @@ But sometimes, this data is generated so quickly that it can overwhelm a traditi
 
 ## The Architecture
 
-Our architecture will generate data from cell devices, transform it, and store it in our cache for fast operations. We’ll also hook up a dashboard to see what's going on in our cell tower. The architecture has five main parts.
+Our architecture will generate data from cell devices, transform it, and store it in our cache for fast operations. We’ll also hook up a dashboard to see cell tower data generated in real-time.
+
+![Flink Dashboard](img/dashboard.png)
+
+The architecture has five main parts.
 
 * **AMQ Streams (Kafka)** - Handles high throughput real-time streaming
 * **Apache Flink** - Transforms & analyzes call record data into usable format
 * **Data Grid** - High throughput cache to serve as a buffer between Kafka and our database
 * **MySQL Database** - Stores call record data for long term use
 * **Metabase Dashboard** - Displays call record data
+
 
 ![5G Streaming Architecture](img/5g-streaming-arch.png)
 
