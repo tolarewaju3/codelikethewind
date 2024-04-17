@@ -12,7 +12,7 @@ But sometimes, this data is generated so quickly that it can overwhelm a traditi
 
 Our architecture will generate data from cell devices, transform it, and store it in our cache for fast operations. We’ll also hook up a dashboard to see cell tower data generated in real-time.
 
-![Flink Dashboard](img/dashboard.png)
+![Flink Dashboard](img/dashboard_final.png)
 
 The architecture has five main parts.
 
