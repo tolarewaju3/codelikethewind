@@ -6,11 +6,17 @@ Telecommunication companies produce data **extremely fast.**
 
 To make use of this data, companies need to **capture, transform, and analyze it in real time.** They also need to store the data in an easy format for future use (AI model training etc).
 
-But sometimes, this data comes in so quickly that it can overwhelm a traditional database. So **we require an intermediary buffer** (Data Grid) for fast reads and writes.
+But sometimes, this data comes in so quickly that it can overwhelm a traditional database. This is where Data Grid comes in. It's a in-memory cache that can accelerate our data processing and serve as a buffer between our data intake and the database.
 
 ## The Architecture
 
-Our architecture will generate data from cell devices, transform it, and store it in our cache for fast operations. We’ll also hook up a dashboard to see what's going on in our cell tower.
+Our architecture will generate data from cell devices, transform it, and store it in our cache for fast operations. We’ll also hook up a dashboard to see what's going on in our cell tower. Our architecture has five main parts.
+
+* AMQ Streams (Kafka) - Handles high throughput real-time streaming
+* Apache Flink - Transforms & analyzes call record data into usable format
+* Data Grid - High throughput cache to serve as a buffer between Kafka and our database
+* MySQL Database - Stores call record data for long term use
+* Dashboard - Displays call record data
 
 ![5G Streaming Architecture](img/5g-streaming-arch.png)
 
