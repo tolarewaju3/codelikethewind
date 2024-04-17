@@ -4,9 +4,9 @@
 
 Telecommunication companies produce data **extremely fast.**
 
-To make use of this data, companies need to **capture, transform, and analyze it in real time.** They also need to store the data in an easy format for future use (AI model training etc).
+To make decisions based on this data, companies need to **capture, transform, and analyze it in real time.** They also need to store the data in an easy format for future use (AI model training etc).
 
-But sometimes, this data comes in so quickly that it can overwhelm a traditional database. This is where Data Grid comes in. It's a in-memory cache that can accelerate our data processing and serve as a buffer between our data intake and the database.
+But sometimes, this data is generated so quickly that it can overwhelm a traditional database. **This is where Data Grid comes in.** It's a in-memory cache that can accelerate our data processing and serve as a buffer between our data intake and the database.
 
 ## The Architecture
 
