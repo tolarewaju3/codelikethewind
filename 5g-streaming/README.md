@@ -1,4 +1,4 @@
-# 5G Data Streaming
+# 5G Data Streaming w/ Data Buffering
 
 ## The Problem
 
