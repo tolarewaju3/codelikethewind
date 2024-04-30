@@ -1,4 +1,4 @@
-# 5G Sensor Streaming
+# 5G Sensor Data Streaming
 
 ## The Problem
 
